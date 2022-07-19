@@ -1,22 +1,11 @@
 import Styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = Styled.div`
     width:100%;
     border-bottom: 1px solid rgba(0,0,0,0.3);
-    .sideBar-enter {
-        width: 0%;
-    }
-    .sideBar-enter-active {
-        width: 70%;
-        transition: width 500ms ease-in;
-    }
-    .sideBar-exit {
-        width: 80%;
-    }
-    .sideBar-exit-active {
-        width: 0%;
-    transition: width 500ms ease-in;
-    }
+    font-family: 'Roboto', sans-serif;
+
 `;
 
 export const Section = Styled.section`
@@ -37,21 +26,56 @@ export const LogoWrapper = Styled.div`
 
 
 `;
+
 export const Logo = Styled.img`
     object-fit: contain;
     width:5rem;
+    @media(min-width:768px){
+        width:7rem;
+    }
 `;
 
 export const Burger = Styled.button`
-    display:none;
     margin:1rem;
     border-radius:0.25rem;
     padding:0.5rem;
     border:none;
     background:transparent;
-    @media(max-width:768px){
+    @media(min-width:768px){
+        display:none;
+    }
+`;
+
+export const NavBar = Styled.nav`
+    display:none;
+    @media(min-width:768px){
         display:block;
     }
+
+`;
+
+export const StyledLink = Styled(Link)`
+    margin-left:0.5rem;
+    text-decoration:none;
+    font-size:1.25rem;
+    color:black;
+    font-weight:500;
+    transition: 0.3s ease-in;
+    &:hover{
+        font-weight:700;
+    }
+
+`;
+
+export const SignupBtn = Styled.button`
+    background:black;
+    border-radius:0.75rem;
+    padding:0.75rem 1.5rem;
+    margin-left:3rem;
+    color:White;
+    text-transform:capitalize;
+    cursor:pointer;
+    font-weight:700;
 `;
 
 export const Search = Styled.button`

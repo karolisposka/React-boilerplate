@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import * as S from "../Navigation/Navigation.styles";
 import Logo from "../../assets/campsite.svg";
 import SideBar from "../SideBar/SideBar";
+import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { FaBars, FaSearch } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const links = [
   "Private Campsites",
   "Public Campsites",
@@ -13,7 +14,8 @@ const links = [
   "Outdoor Activities",
 ];
 
-const Navigation = () => {
+const Navigation = ({ items }) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const toggleBurgerMenu = () => {
     return setOpen(!open);
@@ -30,8 +32,23 @@ const Navigation = () => {
             <FaSearch />
           </S.Search>
           <S.LogoWrapper>
-            <S.Logo src={Logo} alt="Campsite" />
+            <Link to="/">
+              <S.Logo src={Logo} alt="Campsite" />
+            </Link>
           </S.LogoWrapper>
+          <S.NavBar>
+            {items &&
+              items.map((item) => (
+                <S.StyledLink to={item.location}>{item.name}</S.StyledLink>
+              ))}
+            <S.SignupBtn
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Signup
+            </S.SignupBtn>
+          </S.NavBar>
           <S.Burger
             onClick={() => {
               toggleBurgerMenu();
@@ -42,7 +59,7 @@ const Navigation = () => {
         </S.NavigationContainer>
         <CSSTransition
           in={open}
-          timeout={500}
+          timeout={250}
           classNames="sideBar"
           unmountOnExit
         >
@@ -57,6 +74,13 @@ const Navigation = () => {
       </S.Section>
     </S.Container>
   );
+};
+
+Navigation.propTypes = {
+  items: PropTypes.arrayOf({
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
 };
 
 export default Navigation;

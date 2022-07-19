@@ -1,14 +1,14 @@
 import React from "react";
-import Account from "../components/Account/Account";
 import Navigation from "../components/Navigation/Navigation";
+import MapContainer from "../components/mapContainer/MapContainer";
 
-const Login = () => {
+const Map = () => {
   return (
     <>
       <Navigation />
-      <Account />
+      <MapContainer />
     </>
   );
 };
 
-export default Login;
+export default Map;

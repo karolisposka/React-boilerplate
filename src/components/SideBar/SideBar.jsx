@@ -3,6 +3,7 @@ import * as S from "../SideBar/SideBar.styles";
 import PropTypes from "prop-types";
 import { FaRegWindowClose } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 const SideBar = ({ handleClick, links }) => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const SideBar = ({ handleClick, links }) => {
         {links &&
           links.map((link, index) => <S.Link key={index}>{link}</S.Link>)}
       </S.NavList>
+      <Footer />
     </S.SideBarContainer>
   );
 };

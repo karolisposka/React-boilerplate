@@ -2,28 +2,30 @@ import Styled, { keyframes } from "styled-components";
 
 export const SideBarContainer = Styled.div`
     background:white;
-    box-shadow: 8px 1px 11px 1px rgba(214,205,205,0.75);
+    box-shadow: 8px 1px 11px 1px rgba(0,0,0,0.3);
     display:none;
     height:100%;
+    width:80%;
     left:0;
     position:absolute;
     top:0;
     overflow:hidden;
-    width:80%;
-        .sideBar-enter {
+    z-index:3;
+    &.sideBar-enter {
         width: 0%;
     }
-    .sideBar-enter-active {
+    &.sideBar-enter-active {
         width: 80%;
-        transition: width 500ms ease-in;
+        transition: width 250ms ease-in;
     }
-    .sideBar-exit {
+    &.sideBar-exit {
         width: 80%;
     }
-    .sideBar-exit-active {
+    &.sideBar-exit-active {
         width: 0%;
-    transition: width 500ms ease-in;
+        transition: width 250ms ease-in;
     }
+
     @media(max-width:768px){
         display:block;
     }
@@ -37,15 +39,16 @@ export const ButtonWrapper = Styled.div`
 `;
 
 export const LoginButton = Styled.button`
-    padding:0.75rem 6rem;
-    display:block;
-    border:none;
     background:black;
-    color:white;
     border-radius:0.5rem;
-    text-transform:uppercase;
+    border:none;
+    color:white;
+    cursor:pointer;
+    display:block;
     margin: 0 auto;
-
+    padding:0.25rem 0rem;
+    text-transform:uppercase;
+    width:80%;
 `;
 
 export const CloseButton = Styled.button`
@@ -65,12 +68,14 @@ const move = keyframes`
     0%{
         transform:translateX(0px);
     }
-    100%{
-        transform:translateX(10px);
+
+    50%{
+        transform: translateX(10px)
     }
 
-
-
+    100%{
+        transform:translateX(0px);
+    }
 `;
 
 export const Link = Styled.a`
@@ -80,7 +85,6 @@ export const Link = Styled.a`
     font-size:1.2rem;
     font-weight:500;
     &&:hover{
-        animation: ${move}  1s ease;
+        animation: ${move}  1s ease-in-out;
     }
-  
 `;
