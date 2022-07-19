@@ -7,8 +7,9 @@ export const Container = Styled.div`
 
 `;
 
-export const Section = Styled.section`
-    max-width:1200px;
-    margin:0 auto;
+export const MapContainer = Styled.div`
+    width:100%;
+    height:90vh;
+    position:relative;
 
 `;

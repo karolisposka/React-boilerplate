@@ -1,22 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./MapContainer.styles";
+import LocationMarker from "../locationMarker/LocationMarker";
+import LocationCard from "../locationCard/LocationCard";
 import GoogleMapReact from "google-map-react";
 
 const center = {
-  lat: 23.8813,
-  lng: 55.1694,
+  lat: 55.19,
+  lng: 23.54,
 };
 
-const MapContainer = () => {
+const MapContainer = ({ locations }) => {
+  const [locationInfo, setLocationInfo] = useState();
   return (
     <S.Container>
-      <S.Section>
+      <S.MapContainer>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCf9XUnBdPSgcuEG-o9uzQ2jKPkUCfIRDQ" }}
-          defaultZoom={10}
+          bootstrapURLKeys={{
+            key: "AIzaSyCf9XUnBdPSgcuEG-o9uzQ2jKPkUCfIRDQ",
+          }}
+          defaultZoom={7}
           defaultCenter={center}
-        ></GoogleMapReact>
-      </S.Section>
+        >
+          {locations &&
+            locations.map((item) => (
+              <LocationMarker
+                lat={item.lat}
+                lng={item.lng}
+                type={item.type}
+                handleClick={() => {
+                  return setLocationInfo({
+                    title: item.title,
+                    text: item.description,
+                    nearBy: item.near,
+                  });
+                }}
+              />
+            ))}
+        </GoogleMapReact>
+        {locationInfo && (
+          <LocationCard
+            title={locationInfo.title}
+            text={locationInfo.text}
+            nearBy={locationInfo.nearBy}
+          />
+        )}
+      </S.MapContainer>
     </S.Container>
   );
 };
