@@ -3,6 +3,13 @@ import Navigation from "../components/Navigation/Navigation";
 import MapContainer from "../components/mapContainer/MapContainer";
 import Loader from "../components/loader/Loader";
 
+const routes = [
+  {
+    location: "/",
+    name: "Home",
+  },
+];
+
 const Map = () => {
   const [locations, setLocations] = useState();
   const [error, setError] = useState();
@@ -25,7 +32,7 @@ const Map = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation items={routes} />
       {!locations && <Loader />}
       {error && <div>{error}</div>}
       {locations && <MapContainer locations={locations} />}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as S from "./MapContainer.styles";
 import LocationMarker from "../locationMarker/LocationMarker";
 import LocationCard from "../locationCard/LocationCard";
+import Legend from "../legend/Legend";
 import GoogleMapReact from "google-map-react";
 
 const center = {
@@ -37,11 +38,15 @@ const MapContainer = ({ locations }) => {
               />
             ))}
         </GoogleMapReact>
+        {!locationInfo && <Legend />}
         {locationInfo && (
           <LocationCard
             title={locationInfo.title}
             text={locationInfo.text}
             nearBy={locationInfo.nearBy}
+            handleClick={() => {
+              setLocationInfo();
+            }}
           />
         )}
       </S.MapContainer>
